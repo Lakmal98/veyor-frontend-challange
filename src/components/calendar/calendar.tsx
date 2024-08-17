@@ -4,11 +4,17 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './calendar.css';
 
-export default function Calendar() {
+interface IProps {
+    onDateChange: (date: Date | null) => void;
+}
+
+
+export default function Calendar({ onDateChange }: IProps) {
     const [startDate, setStartDate] = useState<Date | null>(null);
 
     const handleDateChange = (date: Date | null) => {
         setStartDate(date);
+        onDateChange(date);
     };
 
 

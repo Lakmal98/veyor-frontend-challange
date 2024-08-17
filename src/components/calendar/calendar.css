@@ -1,0 +1,41 @@
+.react-datepicker {
+  width: 175%;
+}
+
+.react-datepicker__month-container {
+  width: 100%;
+  padding: 0.5rem; /* Add padding to the month container */
+}
+
+.react-datepicker__day-names,
+.react-datepicker__week {
+  margin-bottom: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.react-datepicker__day-names > div,
+.react-datepicker__week > div {
+  width: 3rem;
+  margin: auto;
+  line-height: 3rem;
+}
+
+.react-datepicker__day {
+  margin: 0.2rem; /* Increase spacing between days */
+  border-radius: 50%; /* Make the day cells round */
+}
+
+.react-datepicker__day--selected {
+  background-color: transparent;
+  border: 1px solid #000000;
+  color: #000000; /* Customize selected date text color */
+  border-radius: 50%; /* Ensure selected day remains round */
+}
+
+.react-datepicker__day:hover {
+  background-color: transparent;
+  border: 1px solid gray;
+  color: #000000; /* Customize selected date text color */
+  border-radius: 50%; /* Ensure selected day remains round */
+}

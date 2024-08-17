@@ -6,6 +6,7 @@ import TabGroup from "@/components/tab-group";
 import TimeSlot from "@/components/time-slot";
 import { SESSIONS } from "@/services/mock-data/session.mock";
 import { AVAILABLE_TIME_SLOTS } from "@/services/mock-data/time.mock";
+import { Session } from "@/types/session";
 import { useEffect, useState } from "react";
 
 export default function Booking() {
@@ -15,10 +16,11 @@ export default function Booking() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([]);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-
-  useEffect(() => {
-    console.log(`Selected session: ${selectedSessionId}`);
-  }, [selectedSessionId]);
+  const [selectedSessionData, setSelectedSessionData] = useState<{
+    session: Session;
+    date: Date;
+    time: string;
+  } | null>(null);
 
   useEffect(() => {
     if (selectedDate) {
@@ -47,10 +49,23 @@ export default function Booking() {
     setSelectedTime(time);
   };
 
+  const onContinueSessionSelection = () => {
+    if (selectedDate && selectedTime) {
+      const session = SESSIONS.find((s) => s.id === selectedSessionId);
+      if (session) {
+        setSelectedSessionData({
+          session,
+          date: selectedDate,
+          time: selectedTime,
+        });
+      }
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-around p-1">
       <div className="flex flex-col items-center">
-        <h1 className="text-8xl">Book a wellness session.</h1>
+        <h1 className="text-8xl pt-20">Book a wellness session.</h1>
         <p className="text-lg pt-10">
           Visit one of our expert consultants to get yourself feeling 100%
           again.
@@ -67,28 +82,33 @@ export default function Booking() {
             isSelected={selectedSessionId === session.id}
           />
         ))}
-        <Calendar onDateChange={handleDateChange} />
-        <div className="w-full flex flex-col p-5">
-          <div>Please select a time</div>
-          {availableTimeSlots.length > 0 ? (
-            availableTimeSlots.map((time) => (
-              <TimeSlot
-                key={time}
-                time={time}
-                isSelected={time === selectedTime}
-                onClick={() => handleTimeClick(time)}
-              />
-            ))
-          ) : (
-            <div className="p-2 text-center text-red-500 font-bold">
-              Sorry, no available time slots for this date. Please select
-              another date.
-            </div>
-          )}
-        </div>
+        {selectedSessionId && <Calendar onDateChange={handleDateChange} />}
+        {selectedSessionId && (
+          <div className="w-full flex flex-col p-5">
+            <div>Please select a time</div>
+            {availableTimeSlots.length > 0 ? (
+              availableTimeSlots.map((time) => (
+                <TimeSlot
+                  key={time}
+                  time={time}
+                  isSelected={time === selectedTime}
+                  onClick={() => handleTimeClick(time)}
+                />
+              ))
+            ) : (
+              <div className="p-2 text-center text-red-500 font-bold">
+                Sorry, no available time slots for this date. Please select
+                another date.
+              </div>
+            )}
+          </div>
+        )}
         <div className="w-full justify-start p-5">
           {selectedTime && (
-            <button className="p-2 px-4 bg-black text-white rounded-lg">
+            <button
+              className="p-2 px-4 bg-black text-white rounded-lg"
+              onClick={onContinueSessionSelection}
+            >
               Continue &gt;&gt;
             </button>
           )}

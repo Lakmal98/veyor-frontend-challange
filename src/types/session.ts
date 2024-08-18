@@ -4,3 +4,9 @@ export type Session = {
   duration: string;
   price: string;
 };
+
+export interface SessionData {
+  session: Session;
+  date: Date;
+  time: string;
+}

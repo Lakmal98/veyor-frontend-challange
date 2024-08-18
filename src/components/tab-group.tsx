@@ -29,7 +29,7 @@ export default function TabGroup({
           className={`py-2 px-4 border w-60 text-center cursor-pointer ${
             tab === tabValue ? "border-b-2 border-black" : "text-gray-400"
           }`}
-          onClick={() => handleTabClick(tabValue)}
+        //   onClick={() => handleTabClick(tabValue)}
         >
           {tabValue}
         </div>

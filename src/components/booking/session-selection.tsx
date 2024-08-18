@@ -6,6 +6,7 @@ import { SESSIONS } from "@/services/mock-data/session.mock";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { AVAILABLE_TIME_SLOTS } from "@/services/mock-data/time.mock";
 import { Session } from "@/types/session";
+import ContinueButton from "../elements/continue-button";
 
 interface SessionSelectionProps {
   onSessionSelect: (data: {
@@ -111,12 +112,10 @@ export default function SessionSelection({
       )}
       <div className="w-full justify-start p-5">
         {selectedTime && (
-          <button
-            className="p-2 px-4 bg-black text-white rounded-lg"
+          <ContinueButton
+            text="Continue"
             onClick={onContinueSessionSelection}
-          >
-            Continue <FaAngleDoubleRight className="inline" />
-          </button>
+          />
         )}
       </div>
     </>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 type IProps = {
-  initialTab?: string;
+  tab?: Tab;
   onTabChange: (selectedTab: Tab) => void;
 };
 
@@ -14,36 +14,24 @@ export enum Tab {
 const TABS = Object.values(Tab);
 
 export default function TabGroup({
-  initialTab = "Choose Appointment",
+  tab = Tab.ChooseAppointment,
   onTabChange,
 }: IProps) {
-  const [selectedTab, setSelectedTab] = useState<Tab>(initialTab as Tab);
-
-  useEffect(() => {
-    if (onTabChange) {
-      onTabChange(selectedTab);
-    }
-  }, [selectedTab, onTabChange]);
-
-  useEffect(() => {
-    setSelectedTab(initialTab as Tab);
-  }, [initialTab]);
-
   const handleTabClick = (tab: Tab) => {
-    setSelectedTab(tab);
+    onTabChange(tab);
   };
 
   return (
     <div className="flex justify-center">
-      {TABS.map((tab) => (
+      {TABS.map((tabValue) => (
         <div
-          key={tab}
+          key={tabValue}
           className={`py-2 px-4 border w-60 text-center cursor-pointer ${
-            selectedTab === tab ? "border-b-2 border-black" : "text-gray-400"
+            tab === tabValue ? "border-b-2 border-black" : "text-gray-400"
           }`}
-          onClick={() => handleTabClick(tab)}
+          onClick={() => handleTabClick(tabValue)}
         >
-          {tab}
+          {tabValue}
         </div>
       ))}
     </div>

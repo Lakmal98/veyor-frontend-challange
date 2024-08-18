@@ -1,19 +1,17 @@
 "use client";
-
-import Calendar from "@/components/calendar/calendar";
-import SessionType from "@/components/session-type";
-import TabGroup from "@/components/tab-group";
-import TimeSlot from "@/components/time-slot";
-import { SESSIONS } from "@/services/mock-data/session.mock";
-import { AVAILABLE_TIME_SLOTS } from "@/services/mock-data/time.mock";
-import { Session } from "@/types/session";
 import { useEffect, useState } from "react";
+import TabGroup, { Tab } from "@/components/tab-group";
+import { AVAILABLE_TIME_SLOTS } from "@/services/mock-data/time.mock";
+import { SESSIONS } from "@/services/mock-data/session.mock";
+import { Session } from "@/types/session";
+import SessionSelection from "@/components/booking/session-selection";
 
 export default function Booking() {
+  const [selectedTab, setSelectedTab] = useState<Tab>(Tab.ChooseAppointment);
   const [selectedSessionId, setSelectedSessionId] = useState<number | null>(
     null
   );
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([]);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [selectedSessionData, setSelectedSessionData] = useState<{
@@ -21,6 +19,10 @@ export default function Booking() {
     date: Date;
     time: string;
   } | null>(null);
+
+  const onTabChange = (selectedTab: Tab) => {
+    setSelectedTab(selectedTab);
+  };
 
   useEffect(() => {
     if (selectedDate) {
@@ -72,47 +74,26 @@ export default function Booking() {
         </p>
       </div>
       <div className="flex flex-col items-center">
-        <TabGroup />
+        <TabGroup onTabChange={onTabChange} />
         <div className="h-12"></div>
-        {SESSIONS.map((session) => (
-          <SessionType
-            key={session.id}
-            session={session}
-            onClick={() => handleSessionClick(session.id)}
-            isSelected={selectedSessionId === session.id}
+        {selectedTab === Tab.ChooseAppointment && (
+          <SessionSelection
+            selectedSessionId={selectedSessionId}
+            onSessionClick={handleSessionClick}
+            selectedDate={selectedDate}
+            onDateChange={handleDateChange}
+            availableTimeSlots={availableTimeSlots}
+            selectedTime={selectedTime}
+            onTimeClick={handleTimeClick}
+            onContinueSessionSelection={onContinueSessionSelection}
           />
-        ))}
-        {selectedSessionId && <Calendar onDateChange={handleDateChange} />}
-        {selectedSessionId && (
-          <div className="w-full flex flex-col p-5">
-            <div>Please select a time</div>
-            {availableTimeSlots.length > 0 ? (
-              availableTimeSlots.map((time) => (
-                <TimeSlot
-                  key={time}
-                  time={time}
-                  isSelected={time === selectedTime}
-                  onClick={() => handleTimeClick(time)}
-                />
-              ))
-            ) : (
-              <div className="p-2 text-center text-red-500 font-bold">
-                Sorry, no available time slots for this date. Please select
-                another date.
-              </div>
-            )}
-          </div>
         )}
-        <div className="w-full justify-start p-5">
-          {selectedTime && (
-            <button
-              className="p-2 px-4 bg-black text-white rounded-lg"
-              onClick={onContinueSessionSelection}
-            >
-              Continue &gt;&gt;
-            </button>
-          )}
-        </div>
+        {selectedTab === Tab.YourInfo && (
+          <div className="text-2xl">Your Info</div>
+        )}
+        {selectedTab === Tab.Confirmation && (
+          <div className="text-2xl">Confirmation</div>
+        )}
       </div>
     </div>
   );

@@ -1,13 +1,15 @@
 import { Session } from "@/types/session";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 interface IProps {
   session: Session;
   onClick: () => void;
   isSelected?: boolean;
+  collapsed?: boolean;
 }
 
 export default function SessionType(props: IProps) {
-  const { session, isSelected } = props;
+  const { session, isSelected, collapsed } = props;
   return (
     <div
       onClick={props.onClick}
@@ -15,7 +17,12 @@ export default function SessionType(props: IProps) {
             hover:bg-gray-100 hover:border-black-500 
             ${isSelected ? "bg-gray-200 border-black-600" : ""}`}
     >
-      <div className="font-semibold">{session.name}</div>
+      <div className="flex justify-between items-center">
+        <div className="font-semibold">{session.name}</div>
+        <span>
+          {isSelected && !collapsed ? <FaChevronUp /> : <FaChevronDown />}
+        </span>
+      </div>
       <div>
         {session.duration} @ {session.price}
       </div>

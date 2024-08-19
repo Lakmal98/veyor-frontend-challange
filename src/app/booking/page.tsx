@@ -1,15 +1,24 @@
 "use client";
 import { useEffect, useState } from "react";
 import TabGroup, { Tab } from "@/components/tab-group";
-import { Session, SessionData } from "@/types/session";
+import { SessionData } from "@/types/session";
 import SessionSelection from "@/components/booking/session-selection";
 import YourInfo from "@/components/booking/your-info";
+import Confirmation from "@/components/booking/confirmation";
+import { UserInfo } from "@/types/user-info";
 
 export default function Booking() {
   const [selectedTab, setSelectedTab] = useState<Tab>(Tab.ChooseAppointment);
 
   const [selectedSessionData, setSelectedSessionData] =
     useState<SessionData | null>(null);
+
+  const [userInput, setUserInput] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+  } as UserInfo);
 
   const onTabChange = (selectedTab: Tab) => {
     setSelectedTab(selectedTab);
@@ -41,10 +50,14 @@ export default function Booking() {
             sessionData={selectedSessionData!}
             onClickBack={() => setSelectedTab(Tab.ChooseAppointment)}
             onClickComplete={() => setSelectedTab(Tab.Confirmation)}
+            setUserInput={setUserInput}
           />
         )}
         {selectedTab === Tab.Confirmation && (
-          <div className="text-2xl">Confirmation</div>
+          <Confirmation
+            sessionData={selectedSessionData!}
+            userInfo={userInput}
+          />
         )}
       </div>
     </div>

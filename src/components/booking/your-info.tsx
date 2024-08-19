@@ -93,7 +93,7 @@ export default function YourInfo({
         {/* Name */}
         <div
           className={`flex flex-col ${
-            errors.firstName ? "bg-red-100 p-2 rounded-md my-1" : ""
+            errors.firstName ? "bg-red-100 p-2 rounded my-1" : ""
           }`}
         >
           <label htmlFor="name">
@@ -124,7 +124,7 @@ export default function YourInfo({
         {/* Phone */}
         <div
           className={`flex flex-col ${
-            errors.phone ? "bg-red-100 p-2 my-1" : ""
+            errors.phone ? "bg-red-100 rounded p-2 my-1" : ""
           }`}
         >
           <label htmlFor="phone">Phone</label>
@@ -144,7 +144,7 @@ export default function YourInfo({
         {/* Email */}
         <div
           className={`flex flex-col ${
-            errors.email ? "bg-red-100 p-2 my-1" : ""
+            errors.email ? "bg-red-100 rounded p-2 my-1" : ""
           }`}
         >
           <label htmlFor="email">

@@ -1,10 +1,9 @@
-"use client";
-
 import { SessionData } from "@/types/session";
 import { FaAngleDoubleLeft } from "react-icons/fa";
 import ContinueButton from "../elements/continue-button";
 import { useState } from "react";
 import { UserInfo } from "@/types/user-info";
+import LoadingOverlay from "../loading-overlay";
 
 interface IProps {
   sessionData: SessionData;
@@ -22,7 +21,7 @@ export default function YourInfo({
   const { session, date, time } = sessionData;
 
   const [hasButtonDisabled, setButtonDisabled] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
@@ -69,11 +68,19 @@ export default function YourInfo({
   };
 
   const handleComplete = () => {
-    onClickComplete();
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      onClickComplete();
+    }, 3000); // Simulate a 3-second delay for booking confirmation
   };
 
   return (
-    <div className="flex flex-col items-left w-11/12">
+    <div className="relative flex flex-col items-left w-11/12">
+      {isLoading && (
+        <LoadingOverlay message="Hold on, confirming your booking..." />
+      )}
+
       <div className="text-left">{`${
         session.name
       } ${date.toDateString()} ${time}`}</div>

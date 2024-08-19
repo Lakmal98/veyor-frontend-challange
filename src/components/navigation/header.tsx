@@ -14,7 +14,7 @@ export default function Header() {
       </div>
       <nav>
         <ul className="flex space-x-4 pr-12">
-          <li>
+          <li className="cursor-pointer hover:underline">
             <Link href="/">
               <span
                 className={`${
@@ -25,7 +25,7 @@ export default function Header() {
               </span>
             </Link>
           </li>
-          <li>
+          <li className="cursor-pointer hover:underline">
             <Link href="/booking">
               <span
                 className={`${

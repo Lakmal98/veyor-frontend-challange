@@ -1,15 +1,44 @@
+import { useState } from "react";
 import { SessionData } from "@/types/session";
 import { UserInfo } from "@/types/user-info";
 import Link from "next/link";
 import { FaAngleDoubleRight } from "react-icons/fa";
+import ConfirmationDialog from "./cancellation-confirmation";
 
 interface IProps {
   sessionData: SessionData;
-  userInfo: UserInfo;
+  userInfo?: UserInfo;
+  clearBooking: () => void;
 }
 
-export default function Confirmation({ sessionData, userInfo }: IProps) {
+export default function Confirmation({
+  sessionData,
+  clearBooking,
+}: Readonly<IProps>) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { session, date, time } = sessionData;
+
+  const handleCancel = () => {
+    setIsDialogOpen(true); // Open the confirmation dialog
+  };
+
+  const handleConfirmCancel = () => {
+    clearBooking();
+    setIsDialogOpen(false);
+  };
+
+  const scheduleAnotherAppointment = () => {
+    clearBooking();
+  };
+
+  const rescheduleAppointment = () => {
+    alert("Cannot reschedule at this time.");
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false); // Close the dialog without performing cancellation
+  };
+
   return (
     <div className="flex flex-row items-start w-2/4 p-8">
       <div className="flex flex-col w-9/12">
@@ -31,16 +60,25 @@ export default function Confirmation({ sessionData, userInfo }: IProps) {
           <span className="pl-4">{session.price}</span>
         </div>
         <div>
-          <button className="bg-black text-white p-2 rounded-md w-36 mr-1">
+          <button
+            onClick={handleCancel}
+            className="bg-black text-white p-2 rounded-md w-36 mr-1 hover:bg-red-500"
+          >
             Cancel
           </button>
-          <button className="bg-black text-white p-2 rounded-md w-36">
+          <button
+            className="bg-black text-white p-2 rounded-md w-36 hover:bg-blue-500"
+            onClick={rescheduleAppointment}
+          >
             Reschedule
           </button>
         </div>
         <div>
           <Link href="/booking#">
-            <button className="border-2 p-2 rounded-md mt-2 w-72">
+            <button
+              className="border-2 p-2 rounded-md mt-2 w-72 hover:bg-blue-500 hover:text-white"
+              onClick={scheduleAnotherAppointment}
+            >
               Schedule Another Appointment{" "}
               <FaAngleDoubleRight className="inline" />
             </button>
@@ -61,6 +99,12 @@ export default function Confirmation({ sessionData, userInfo }: IProps) {
           <img src="/mock/image/qr.png" alt="QR Code" />
         </div>
       </div>
+      <ConfirmationDialog
+        isOpen={isDialogOpen}
+        onConfirm={handleConfirmCancel}
+        onCancel={handleDialogClose}
+        message="Are you sure you want to cancel?"
+      />
     </div>
   );
 }

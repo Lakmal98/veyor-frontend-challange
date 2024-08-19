@@ -9,9 +9,9 @@ interface IProps {
 export default function ContinueButton({ text, onClick, disabled }: IProps) {
   return (
     <button
-      className={`p-2 px-4 bg-black text-white rounded-lg ${
+      className={`p-2 px-4 bg-gray-800 text-white rounded-lg ${
         disabled ? "opacity-50" : ""
-      }`}
+      } hover:bg-black`}
       onClick={(e) => {
         e.preventDefault();
         onClick();

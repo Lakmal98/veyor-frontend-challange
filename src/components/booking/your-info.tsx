@@ -72,7 +72,7 @@ export default function YourInfo({
     setTimeout(() => {
       setIsLoading(false);
       onClickComplete();
-    }, 3000); // Simulate a 3-second delay for booking confirmation
+    }, 3000); // Simulate a 3 second delay for booking confirmation
   };
 
   return (

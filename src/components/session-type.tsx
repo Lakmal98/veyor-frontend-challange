@@ -8,14 +8,15 @@ interface IProps {
   collapsed?: boolean;
 }
 
-export default function SessionType(props: IProps) {
+export default function SessionType(props: Readonly<IProps>) {
   const { session, isSelected, collapsed } = props;
   return (
-    <div
+    <button
       onClick={props.onClick}
-      className={`flex flex-col border w-11/12 p-5 my-4 mx-8 cursor-pointer 
+      className={`flex flex-col border p-5 my-4 mx-4 cursor-pointer 
             hover:bg-gray-100 hover:border-black-500 
-            ${isSelected ? "bg-gray-200 border-black-600" : ""}`}
+            ${isSelected ? "bg-gray-200 border-black-600" : ""}
+            sm:w-[40vw] md:w-[30vw] lg:w-[25vw] xl:w-[20vw]`}
     >
       <div className="flex justify-between items-center">
         <div className="font-semibold">{session.name}</div>
@@ -26,6 +27,6 @@ export default function SessionType(props: IProps) {
       <div>
         {session.duration} @ {session.price}
       </div>
-    </div>
+    </button>
   );
 }

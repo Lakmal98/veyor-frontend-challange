@@ -38,7 +38,7 @@ export default function TabGroup({
   tab = Tab.ChooseAppointment,
 }: Readonly<IProps>) {
   return (
-    <div className="flex justify-center relative">
+    <div className="flex justify-center relative transform scale-75 md:scale-125">
       <TabItem
         tab={Tab.Confirmation}
         currentTab={tab}
@@ -53,7 +53,8 @@ export default function TabGroup({
       <div
         className={`absolute w-10 h-[39px] bg-white m-2 transform translate-x-64 border-l-2 ${
           tab === Tab.Confirmation ? "border-black" : "border-gray-300"
-        }`}
+        } 
+        `}
       ></div>
     </div>
   );

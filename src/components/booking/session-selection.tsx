@@ -3,7 +3,6 @@ import Calendar from "@/components/calendar/calendar";
 import SessionType from "@/components/session-type";
 import TimeSlot from "@/components/time-slot";
 import { SESSIONS } from "@/services/mock-data/session.mock";
-import { FaAngleDoubleRight } from "react-icons/fa";
 import { AVAILABLE_TIME_SLOTS } from "@/services/mock-data/time.mock";
 import { Session } from "@/types/session";
 import ContinueButton from "../elements/continue-button";
@@ -18,7 +17,7 @@ interface SessionSelectionProps {
 
 export default function SessionSelection({
   onSessionSelect: setSelectedSessionData,
-}: SessionSelectionProps) {
+}: Readonly<SessionSelectionProps>) {
   const [selectedSessionId, setSelectedSessionId] = useState<number | null>(
     null
   );
@@ -91,8 +90,10 @@ export default function SessionSelection({
         <Calendar onDateChange={handleDateChange} />
       )}
       {selectedSessionId && !collapsed && (
-        <div className="w-full flex flex-col p-5">
-          <div>Please select a time</div>
+        <div className="w-full flex flex-col p-3 md:p-5">
+          <div className="text-sm md:text-base lg:text-lg">
+            Please select a time
+          </div>
           {availableTimeSlots.length > 0 ? (
             availableTimeSlots.map((time) => (
               <TimeSlot
@@ -103,14 +104,14 @@ export default function SessionSelection({
               />
             ))
           ) : (
-            <div className="p-2 text-center text-red-500 font-bold">
+            <div className="p-2 text-center text-red-500 font-bold text-sm md:text-base">
               Sorry, no available time slots for this date. Please select
               another date.
             </div>
           )}
         </div>
       )}
-      <div className="w-full justify-start p-5">
+      <div className="w-full flex justify-start p-3 md:p-5">
         {selectedTime && (
           <ContinueButton
             text="Continue"

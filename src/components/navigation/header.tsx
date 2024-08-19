@@ -9,11 +9,13 @@ export default function Header() {
     <header className="flex justify-between items-center p-4 sticky top-0 bg-white z-10">
       <div className="flex items-center">
         <Link href="/">
-          <h1 className="text-2xl font-bold ml-4">Veyor Wellness</h1>
+          <h1 className="text-xl md:text-2xl font-bold ml-2 md:ml-4">
+            Veyor Wellness
+          </h1>
         </Link>
       </div>
       <nav>
-        <ul className="flex space-x-4 pr-12">
+        <ul className="flex space-x-2 md:space-x-4 pr-4 md:pr-12">
           <li className="cursor-pointer hover:underline">
             <Link href="/">
               <span

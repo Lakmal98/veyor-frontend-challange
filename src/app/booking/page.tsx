@@ -25,7 +25,6 @@ export default function Booking() {
     setSelectedTab(selectedTab);
   };
 
-  // clear everything and book a new session
   const clearBooking = () => {
     setSelectedTab(Tab.ChooseAppointment);
     setSelectedSessionData(null);
@@ -44,17 +43,19 @@ export default function Booking() {
   }, [selectedSessionData]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center p-8">
-      <div className="flex flex-col items-center">
-        <h1 className="text-8xl">Book a wellness session.</h1>
-        <p className="text-lg py-6">
+    <div className="flex min-h-screen flex-col items-center p-4 md:p-8">
+      <div className="flex flex-col items-center text-center">
+        <h1 className="text-4xl md:text-6xl lg:text-8xl leading-tight">
+          Book a wellness session.
+        </h1>
+        <p className="text-base md:text-lg py-4 md:py-6">
           Visit one of our expert consultants to get yourself feeling 100%
           again.
         </p>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-full max-w-2xl">
         <TabGroup onTabChange={onTabChange} tab={selectedTab} />
-        <div className="h-12"></div>
+        <div className="h-6 md:h-12"></div>
         {selectedTab === Tab.ChooseAppointment && (
           <SessionSelection onSessionSelect={setSelectedSessionData} />
         )}

@@ -40,10 +40,10 @@ export default function Confirmation({
   };
 
   return (
-    <div className="flex flex-row items-start w-2/4 p-8">
-      <div className="flex flex-col w-9/12">
-        <div className="text-4xl">{session.name}</div>
-        <div className="text-4xl text-slate-500">
+    <div className="flex flex-col md:flex-row w-full pt-8 items-center md:item-start">
+      <div className="flex flex-col md:w-7/12 lg:w-2/4">
+        <div className="text-2xl md:text-4xl">{session.name}</div>
+        <div className="text-xl md:text-4xl text-slate-500">
           {date.toLocaleDateString("en-US", {
             weekday: "long",
             year: "numeric",
@@ -52,22 +52,22 @@ export default function Confirmation({
           })}
         </div>
 
-        <div className="text-4xl text-slate-500">
+        <div className="text-xl md:text-4xl text-slate-500">
           {time.split(" ").join("").toLocaleLowerCase()}
         </div>
         <div className="py-4">
           <span>Veryor Wellness</span>
           <span className="pl-4">{session.price}</span>
         </div>
-        <div>
+        <div className="flex flex-wrap">
           <button
             onClick={handleCancel}
-            className="bg-black text-white p-2 rounded-md w-36 mr-1 hover:bg-red-500"
+            className="bg-black text-white p-2 rounded-md w-36 mr-1 mb-2 hover:bg-red-500"
           >
             Cancel
           </button>
           <button
-            className="bg-black text-white p-2 rounded-md w-36 hover:bg-blue-500"
+            className="bg-black text-white p-2 rounded-md w-36 mb-2 hover:bg-blue-500"
             onClick={rescheduleAppointment}
           >
             Reschedule
@@ -76,7 +76,7 @@ export default function Confirmation({
         <div>
           <Link href="/booking#">
             <button
-              className="border-2 p-2 rounded-md mt-2 w-72 hover:bg-blue-500 hover:text-white"
+              className="border-2 p-2 rounded-md mt-2 w-full md:w-72 hover:bg-blue-500 hover:text-white"
               onClick={scheduleAnotherAppointment}
             >
               Schedule Another Appointment{" "}
@@ -85,17 +85,17 @@ export default function Confirmation({
           </Link>
         </div>
       </div>
-      <div className="flex flex-col w-6/12 border-l-2 pl-12">
-        <h1 className="text-4xl">
+      <div className="flex flex-col md:w-5/12 lg:w-2/4 border-t-2 md:border-t-0 md:border-l-2 pt-8 md:pt-0 md:pl-12 mt-8 md:mt-auto">
+        <h1 className="text-2xl md:text-4xl text-center md:text-left">
           Easily book and manage appointments with Veyor Wellness on your phone.
         </h1>
-        <div className="py-4">
+        <div className="py-4 text-center md:text-left">
           <span className="text-lg">
             Get the mobile app by opening the camera on your phone, and scanning
             this QR code:
           </span>
         </div>
-        <div className="flex justify-center w-10/12 m-auto">
+        <div className="flex justify-center w-8/12 md:w-10/12 m-auto">
           <img src="/mock/image/qr.png" alt="QR Code" />
         </div>
       </div>

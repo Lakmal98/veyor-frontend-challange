@@ -17,7 +17,7 @@ export default function YourInfo({
   onClickBack,
   onClickComplete,
   setUserInput,
-}: IProps) {
+}: Readonly<IProps>) {
   const { session, date, time } = sessionData;
 
   const [hasButtonDisabled, setButtonDisabled] = useState(true);
@@ -76,7 +76,7 @@ export default function YourInfo({
   };
 
   return (
-    <div className="relative flex flex-col items-left w-11/12">
+    <div className="relative flex flex-col items-left w-11/12 pt-12">
       {isLoading && (
         <LoadingOverlay message="Hold on, confirming your booking..." />
       )}
@@ -91,18 +91,22 @@ export default function YourInfo({
 
       <form className="flex flex-col pt-10" onChange={onFormChange}>
         {/* Name */}
-        <div className="flex flex-col">
+        <div
+          className={`flex flex-col ${
+            errors.firstName ? "bg-red-100 p-2 rounded-md my-1" : ""
+          }`}
+        >
           <label htmlFor="name">
             Name
             <span className="text-red-500 pl-1">*</span>
           </label>
-          <div className="flex flex-row mb-4">
+          <div className="flex flex-col md:flex-row mb-4">
             <input
               required
               type="text"
               name="firstName"
               placeholder="First Name"
-              className={`border p-2 rounded-md w-1/3 mr-2 ${
+              className={`border p-2 rounded-md w-full md:w-1/3 md:mr-2 ${
                 errors.firstName ? "border-red-500" : ""
               }`}
             />
@@ -110,7 +114,7 @@ export default function YourInfo({
               type="text"
               name="lastName"
               placeholder="Last Name"
-              className="border p-2 rounded-md w-2/3"
+              className="border p-2 rounded-md w-full md:w-2/3 mt-2 md:mt-0"
             />
           </div>
           {errors.firstName && (
@@ -118,7 +122,11 @@ export default function YourInfo({
           )}
         </div>
         {/* Phone */}
-        <div className="flex flex-col mb-4">
+        <div
+          className={`flex flex-col ${
+            errors.phone ? "bg-red-100 p-2 my-1" : ""
+          }`}
+        >
           <label htmlFor="phone">Phone</label>
           <div className="flex flex-row">
             <input
@@ -134,7 +142,11 @@ export default function YourInfo({
           )}
         </div>
         {/* Email */}
-        <div className="flex flex-col mb-4">
+        <div
+          className={`flex flex-col ${
+            errors.email ? "bg-red-100 p-2 my-1" : ""
+          }`}
+        >
           <label htmlFor="email">
             Email
             <span className="text-red-500 pl-1">*</span>

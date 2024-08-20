@@ -45,7 +45,7 @@ export default function Booking() {
   return (
     <div className="flex min-h-screen flex-col items-center p-4 md:p-8">
       <div className="flex flex-col items-center text-center">
-        <h1 className="text-4xl md:text-6xl lg:text-8xl leading-tight">
+        <h1 className="text-4xl md:text-6xl lg:text-8xl leading-tight font-['Adonis']">
           Book a wellness session.
         </h1>
         <p className="text-base md:text-lg py-4 md:py-6">

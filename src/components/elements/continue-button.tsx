@@ -6,7 +6,11 @@ interface IProps {
   onClick: () => void;
 }
 
-export default function ContinueButton({ text, onClick, disabled }: IProps) {
+export default function ContinueButton({
+  text,
+  onClick,
+  disabled,
+}: Readonly<IProps>) {
   return (
     <button
       className={`p-2 px-4 bg-gray-800 text-white rounded-lg ${

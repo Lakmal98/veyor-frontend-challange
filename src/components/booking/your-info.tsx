@@ -1,9 +1,9 @@
 import { SessionData } from "@/types/session";
 import { FaAngleDoubleLeft } from "react-icons/fa";
-import ContinueButton from "../elements/continue-button";
 import { useState } from "react";
 import { UserInfo } from "@/types/user-info";
-import LoadingOverlay from "../loading-overlay";
+import LoadingOverlay from "../elements/loading-overlay";
+import ContinueButton from "../elements/continue-button";
 
 interface IProps {
   sessionData: SessionData;

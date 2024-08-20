@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Calendar from "@/components/calendar/calendar";
-import SessionType from "@/components/session-type";
-import TimeSlot from "@/components/time-slot";
+import SessionType from "@/components/booking/sessions/session-type";
+import TimeSlot from "@/components/booking/time-slot";
 import { SESSIONS } from "@/services/mock-data/session.mock";
 import { AVAILABLE_TIME_SLOTS } from "@/services/mock-data/time.mock";
 import { Session } from "@/types/session";
-import ContinueButton from "../elements/continue-button";
+import ContinueButton from "@/components/elements/continue-button";
 
-interface SessionSelectionProps {
+interface IProps {
   onSessionSelect: (data: {
     session: Session;
     date: Date;
@@ -17,7 +17,7 @@ interface SessionSelectionProps {
 
 export default function SessionSelection({
   onSessionSelect: setSelectedSessionData,
-}: Readonly<SessionSelectionProps>) {
+}: Readonly<IProps>) {
   const [selectedSessionId, setSelectedSessionId] = useState<number | null>(
     null
   );

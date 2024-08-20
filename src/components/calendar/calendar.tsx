@@ -8,7 +8,7 @@ interface IProps {
   onDateChange: (date: Date | null) => void;
 }
 
-export default function Calendar({ onDateChange }: IProps) {
+export default function Calendar({ onDateChange }: Readonly<IProps>) {
   const [startDate, setStartDate] = useState<Date | null>(null);
 
   const handleDateChange = (date: Date | null) => {

@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import { SessionData } from "@/types/session";
-import SessionSelection from "@/components/booking/session-selection";
 import YourInfo from "@/components/booking/your-info";
 import Confirmation from "@/components/booking/confirmation";
 import { UserInfo } from "@/types/user-info";
 import { Tab } from "@/types/tabs";
 import StepNavigation from "@/components/booking/step-navigation/step-navigation";
+import SessionSelection from "@/components/booking/sessions/session-selection";
 
 export default function Booking() {
   const [selectedTab, setSelectedTab] = useState<Tab>(Tab.ChooseAppointment);
@@ -20,10 +20,6 @@ export default function Booking() {
     email: "",
     phone: "",
   } as UserInfo);
-
-  const onTabChange = (selectedTab: Tab) => {
-    setSelectedTab(selectedTab);
-  };
 
   const clearBooking = () => {
     setSelectedTab(Tab.ChooseAppointment);

@@ -5,12 +5,12 @@ interface IProps {
   message: string;
 }
 
-const ConfirmationDialog: React.FC<IProps> = ({
+export default function ConfirmationDialog({
   isOpen,
   onConfirm,
   onCancel,
   message,
-}) => {
+}: Readonly<IProps>) {
   if (!isOpen) return null;
 
   return (
@@ -34,6 +34,4 @@ const ConfirmationDialog: React.FC<IProps> = ({
       </div>
     </div>
   );
-};
-
-export default ConfirmationDialog;
+}

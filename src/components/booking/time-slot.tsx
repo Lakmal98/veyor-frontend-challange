@@ -4,7 +4,7 @@ interface IProps {
   isSelected?: boolean;
 }
 
-export default function TimeSlot(props: IProps) {
+export default function TimeSlot(props: Readonly<IProps>) {
   const { time, isSelected, onClick } = props;
 
   return (

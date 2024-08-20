@@ -35,3 +35,29 @@ Demo: [demo-veyor-frontend-challange.vercel.app](https://demo-veyor-frontend-cha
 - [x]  Tried to avoid third-party libraries as much as possible
 - [x]  Used Jest for unit testing and React Testing Library for testing React components
 - [x]  Used ESLint and Prettier for code formatting and linting
+
+
+-------------------------
+
+### Screenshots
+
+![image](https://github.com/user-attachments/assets/7a0ac0d0-743e-42d2-944a-839fbb16b65d)
+![image](https://github.com/user-attachments/assets/cbd17b80-d987-4008-b5f6-fa565d4680f9)
+![image](https://github.com/user-attachments/assets/946d91f3-63e6-40b4-9972-f3fc705a0ea4)
+![image](https://github.com/user-attachments/assets/ddc3dae2-77ef-41d8-88cb-dd3cada020dd)
+
+
+
+![image](https://github.com/user-attachments/assets/3ec3a339-2b15-4ed9-bfa4-2374ad873f71)
+
+![image](https://github.com/user-attachments/assets/63635726-30c6-4f02-be07-ad80dcf2549b)
+
+![image](https://github.com/user-attachments/assets/cfdde629-b06e-4325-a56c-0220123756a2)
+
+![image](https://github.com/user-attachments/assets/584fe0f4-9a73-4b5a-a215-222a8356c24c)
+
+![image](https://github.com/user-attachments/assets/6e4270c5-08cb-4f01-b214-76b1dfa5cf2f)
+
+
+
+-----------

@@ -1,3 +1,20 @@
+.react-datepicker__header {
+  background-color: transparent;
+  border-bottom: none;
+}
+
+h2.react-datepicker__current-month {
+  padding: 0.5rem;
+  border: solid 1px #f3f3f3;
+  border-radius: 0.25rem;
+  width: 90%;
+  margin: auto;
+}
+
+.react-datepicker__navigation {
+  height: 70px;
+}
+
 .react-datepicker {
   width: 175%;
 }
@@ -38,4 +55,21 @@
   border: 1px solid gray;
   color: #000000; /* Customize selected date text color */
   border-radius: 50%; /* Ensure selected day remains round */
+}
+
+/* Mobile view */
+@media (max-width: 576px) {
+  .react-datepicker {
+    width: 100%;
+  }
+
+  .react-datepicker__navigation {
+    width: 20px;
+  }
+
+  .react-datepicker__day {
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+  }
 }

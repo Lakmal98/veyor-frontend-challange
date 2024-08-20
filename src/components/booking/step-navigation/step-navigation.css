@@ -1,0 +1,90 @@
+.arrow-steps {
+  white-space: nowrap;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.arrow-steps .step {
+  text-align: center;
+  margin-right: 1px;
+  border: solid 1px #d3d3d3;
+  padding: 10px 10px 10px 30px;
+  width: 250px;
+  display: inline-block;
+  position: relative;
+  background: #f3f3f3;
+  transition: background-color 0.2s ease, width 0.2s ease;
+}
+
+.arrow-steps .step:after,
+.arrow-steps .step:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: -17px;
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+  border-left: 17px solid #f3f3f3;
+  z-index: 2;
+  transition: border-color 0.2s ease;
+}
+
+.arrow-steps .step:before {
+  right: auto;
+  left: 0;
+  border-left: 17px solid #d3d3d3;
+  z-index: 0;
+}
+
+.arrow-steps .step:first-child:before {
+  border: none;
+}
+
+.arrow-steps .step:last-child:after {
+  border: none;
+}
+
+.arrow-steps .step span {
+  position: relative;
+}
+
+.arrow-steps .step.active {
+  background-color: #ffffff;
+  border-bottom: solid 2px #000000;
+}
+
+.arrow-steps .step.active:after {
+  border-left: 17px solid #ffffff;
+}
+
+.middle {
+  border-right: none !important;
+  border-left: none !important;
+}
+
+.end {
+  border-left: none !important;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.start {
+  border-right: none !important;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
+/* Mobile view */
+@media (max-width: 576px) {
+  .arrow-steps .step {
+    width: 125px;
+    padding: 4px 4px 4px 15px;
+    font-size: 0.85rem;
+    height: 50px;
+    white-space: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

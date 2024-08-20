@@ -24,7 +24,17 @@ export default function SessionSelection({
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([]);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [collapsed, setCollapsed] = useState(false);
+
+  const [sessions, setSessions] = useState<Session[]>(SESSIONS);
+
+  useEffect(() => {
+    if (selectedSessionId) {
+      const session = SESSIONS.find((s) => s.id === selectedSessionId);
+      if (session) {
+        setSessions([session]);
+      }
+    }
+  }, [selectedSessionId]);
 
   useEffect(() => {
     if (selectedDate) {
@@ -67,6 +77,7 @@ export default function SessionSelection({
       setSelectedSessionId(null);
       setSelectedDate(null);
       setSelectedTime(null);
+      setSessions(SESSIONS);
     } else {
       setSelectedSessionId(id);
     }
@@ -74,22 +85,16 @@ export default function SessionSelection({
 
   return (
     <>
-      {SESSIONS.map(
-        (session) =>
-          (!collapsed || selectedSessionId === session.id) && (
-            <SessionType
-              key={session.id}
-              session={session}
-              onClick={() => handleSessionClick(session.id)}
-              isSelected={selectedSessionId === session.id}
-              collapsed={collapsed}
-            />
-          )
-      )}
-      {selectedSessionId && !collapsed && (
-        <Calendar onDateChange={handleDateChange} />
-      )}
-      {selectedSessionId && !collapsed && (
+      {sessions.map((session) => (
+        <SessionType
+          key={session.id}
+          session={session}
+          onClick={() => handleSessionClick(session.id)}
+          isSelected={selectedSessionId === session.id}
+        />
+      ))}
+      {selectedSessionId && <Calendar onDateChange={handleDateChange} />}
+      {selectedSessionId && (
         <div className="w-full flex flex-col p-3 md:p-5">
           <div className="text-sm md:text-base lg:text-lg">
             Please select a time

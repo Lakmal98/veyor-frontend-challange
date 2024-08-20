@@ -76,7 +76,7 @@ export default function YourInfo({
   };
 
   return (
-    <div className="relative flex flex-col items-left w-11/12 pt-12">
+    <div className="relative flex flex-col items-left md:w-full pt-4">
       {isLoading && (
         <LoadingOverlay message="Hold on, confirming your booking..." />
       )}
